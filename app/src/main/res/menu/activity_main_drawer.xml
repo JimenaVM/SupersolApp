@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_producto"
+            android:icon="@drawable/ic_menu_item"
+            android:title="Categorias" />
+        <item
+            android:id="@+id/nav_promocion"
+            android:icon="@drawable/ic_menu_promo"
+            android:title="Promociones" />
+        <item
+            android:id="@+id/nav_pedido"
+            android:icon="@drawable/ic_menu_shop"
+            android:title="Pedidos" />
+        <item
+            android:id="@+id/nav_credito"
+            android:icon="@drawable/ic_menu_card"
+            android:title="Crédito" />
+    </group>
+
+    <item android:title="Configuración">
+        <menu>
+            <item
+                android:id="@+id/nav_perfil"
+                android:icon="@drawable/ic_menu_person"
+                android:title="Mi Perfíl" />
+            <item
+                android:id="@+id/nav_log_out"
+                android:icon="@drawable/ic_menu_exit"
+                android:title="Cerrar Sesion" />
+        </menu>
+    </item>
+
+</menu>
