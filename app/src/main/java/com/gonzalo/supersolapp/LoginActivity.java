@@ -348,6 +348,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         default:
                             // Iniciar nueva actividad
                             Log.d("LogIn ASYNC", "id: " + response);
+                            ((SupersolApp) getApplicationContext()).setIdUsuario(String.valueOf(response));
                             mContext.startActivity(new Intent(mContext, MainActivity.class));
                             break;
 

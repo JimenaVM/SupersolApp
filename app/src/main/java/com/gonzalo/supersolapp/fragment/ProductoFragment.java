@@ -129,7 +129,7 @@ public class ProductoFragment extends android.support.v4.app.Fragment {
 
                 for (int i = 0; i < jsonArray.length() ; i++) {
                     JSONObject jsonGroup = jsonArray.getJSONObject(i);
-                    categorias.add(i, new Categoria(jsonGroup.getString("idCategoria"),jsonGroup.getString("descripcion"),jsonGroup.getString("Impuesto_idImpuesto")));
+                    categorias.add(i, new Categoria(jsonGroup.getString("idCategoria"),jsonGroup.getString("descripcion"),jsonGroup.getString("idImpuesto")));
                     listViewCategoria.setAdapter(new CategoriaCeldaAdapter(getContext(), categorias));
                 }
 

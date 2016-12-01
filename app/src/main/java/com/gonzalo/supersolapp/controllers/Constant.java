@@ -11,7 +11,9 @@ public class Constant {
     public static final int READ_TIMEOUT = 15000;
 
     // WEB SERVICES REST
-    public static final String _URL_CATEGORIA = "http://192.168.1.42:80/supersol/Servicio/getCategoria.php";
-    public static final String _URL_PRODUCTO = "http://192.168.1.42:80/supersol/Servicio/getProducto.php";
-    public static final String _URL_AUTENTIFICACION = "http://192.168.1.42:80/supersol/Servicio/autentificacion.php";
+    public static final String _URL_CATEGORIA = "http://192.168.1.40:80/supersol/Servicio/getCategoria.php";
+    public static final String _URL_PRODUCTO = "http://192.168.1.40:80/supersol/Servicio/getProducto.php";
+    public static final String _URL_AUTENTIFICACION = "http://192.168.1.40:80/supersol/Servicio/autentificacion.php";
+    public static final String _URL_CREDITO = "http://192.168.1.40:80/supersol/Servicio/getCredito.php";
+    public static final String _URL_PROMOCION = "http://192.168.1.40:80/supersol/Servicio/getPromocion.php";
 }
