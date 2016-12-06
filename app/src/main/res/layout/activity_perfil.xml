@@ -2,10 +2,11 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="#F4F4F4"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_main"/>
 
     <!-- CI -->
     <LinearLayout
@@ -16,18 +17,33 @@
 
         <LinearLayout
             android:padding="4dp"
-            android:gravity="end"
+            android:gravity="end|center_vertical"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:hint="Cedula Identidad: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
             android:padding="4dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_perfil_ci"
+                android:textSize="17sp"
+                android:hint="0000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -43,18 +59,33 @@
 
         <LinearLayout
             android:padding="4dp"
-            android:gravity="end"
+            android:gravity="end|center_vertical"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:hint="Nombres: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
             android:padding="4dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_perfil_nombre"
+                android:textSize="17sp"
+                android:hint="Juan Carlos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -70,18 +101,33 @@
 
         <LinearLayout
             android:padding="4dp"
-            android:gravity="end"
+            android:gravity="end|center_vertical"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:hint="Apellidos: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
             android:padding="4dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_perfil_apellidos"
+                android:textSize="17sp"
+                android:hint="Suarez Sanchez"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -97,18 +143,33 @@
 
         <LinearLayout
             android:padding="4dp"
-            android:gravity="end"
+            android:gravity="end|center_vertical"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:hint="Usuario: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
             android:padding="4dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_perfil_usuario"
+                android:textSize="17sp"
+                android:hint="jc0010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -124,18 +185,33 @@
 
         <LinearLayout
             android:padding="4dp"
-            android:gravity="end"
+            android:gravity="end|center_vertical"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:hint="Telefono: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
             android:padding="4dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_perfil_telefono"
+                android:textSize="17sp"
+                android:hint="4-444458"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -151,18 +227,33 @@
 
         <LinearLayout
             android:padding="4dp"
-            android:gravity="end"
+            android:gravity="end|center_vertical"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:hint="Estado de Credito: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center_vertical"
             android:padding="4dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_perfil_estado"
+                android:textSize="17sp"
+                android:hint="Habilitado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

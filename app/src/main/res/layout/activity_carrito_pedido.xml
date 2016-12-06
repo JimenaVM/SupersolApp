@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_main"/>
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_carrito_pedido"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:paddingBottom="8dp"
+            android:gravity="center_horizontal|bottom"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_celda_pedido_cancel"
+                android:src="@drawable/ic_close_red_48dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingBottom="8dp"
+            android:gravity="center_horizontal|bottom"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_celda_pedido_done"
+                android:src="@drawable/ic_done_red_48dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

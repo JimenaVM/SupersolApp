@@ -8,8 +8,7 @@
     <include layout="@layout/toolbar_main"/>
 
     <ListView
-        android:padding="16dp"
-        android:id="@+id/lv_producto"
+        android:id="@+id/lv_detalle_pedido"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

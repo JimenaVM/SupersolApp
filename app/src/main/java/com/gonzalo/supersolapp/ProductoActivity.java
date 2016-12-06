@@ -1,14 +1,26 @@
 package com.gonzalo.supersolapp;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.gonzalo.supersolapp.controllers.ProductoCeldaAdapter;
+import com.gonzalo.supersolapp.model.Categoria;
 import com.gonzalo.supersolapp.model.Producto;
 
 import org.json.JSONArray;
@@ -38,6 +50,7 @@ import static com.gonzalo.supersolapp.controllers.Constant._URL_PRODUCTO;
 
 public class ProductoActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
     private String getId;
     private ListView listViewProducto;
 
@@ -46,16 +59,70 @@ public class ProductoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_producto);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        toolbar.setNavigationIcon(R.drawable.ic_toolbar_chevron_left);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         listViewProducto = (ListView) findViewById(R.id.lv_producto);
+        getId = getIntent().getStringExtra("id");
+        new ProductoTask(getId).execute();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        getId = getIntent().getStringExtra("id");
-        new ProductoTask(getId).execute();
 
+
+        /*listViewProducto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = parent.getItemAtPosition(position);
+                Producto producto  = (Producto) o;
+                String idProducto = producto.getIdProducto();
+                String title = producto.getNombre();
+                agregarPedido(idProducto, title);
+
+            }
+        });*/
     }
+
+    /*private Dialog agregarPedido(final String id, String name) {
+        final TextView textViewTitle;
+        final EditText editTextCantidad;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View view = inflater.inflate(R.layout.dialog_add_item, null);
+        textViewTitle = (TextView) view.findViewById(R.id.tv_dialog_title);
+        textViewTitle.setText(name);
+        editTextCantidad = (EditText) view.findViewById(R.id.et_dialog_cantidad);
+        builder.setView(view)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int position) {
+
+                        addItem(id,editTextCantidad.getText().toString());
+
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        return builder.create();
+    }
+
+    private void addItem(String id, String cantidad) {
+        Log.d("AddItem", "id: " + id + " und: " + cantidad);
+    }*/
 
     public class ProductoTask extends AsyncTask<Void, Void, Void> {
 
@@ -150,6 +217,7 @@ public class ProductoActivity extends AppCompatActivity {
                             jsonGroup.getString("nombre"),
                             jsonGroup.getString("descripcion"),
                             jsonGroup.getString("foto"),
+                            jsonGroup.getString("precioBase"),
                             jsonGroup.getString("estado"),
                             jsonGroup.getString("idUnidadMedida"),
                             jsonGroup.getString("idCategoria")));

@@ -11,16 +11,18 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private String foto;
+    private String preciobase;
     private String estado;
     private String idUnidadMedida;
     private String idCategoria;
 
-    public Producto(String idProducto, String codigo, String nombre, String descripcion, String foto, String estado, String idUnidadMedida, String idCategoria) {
+    public Producto(String idProducto, String codigo, String nombre, String descripcion, String foto, String preciobase, String estado, String idUnidadMedida, String idCategoria) {
         this.idProducto = idProducto;
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.foto = foto;
+        this.preciobase = preciobase;
         this.estado = estado;
         this.idUnidadMedida = idUnidadMedida;
         this.idCategoria = idCategoria;
@@ -88,5 +90,9 @@ public class Producto {
 
     public void setIdCategoria(String idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public String getPreciobase() {
+        return preciobase;
     }
 }

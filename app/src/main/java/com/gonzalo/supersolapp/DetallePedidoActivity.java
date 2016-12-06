@@ -1,24 +1,18 @@
-package com.gonzalo.supersolapp.fragment;
+package com.gonzalo.supersolapp;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.gonzalo.supersolapp.CarritoPedidoActivity;
-import com.gonzalo.supersolapp.DetallePedidoActivity;
-import com.gonzalo.supersolapp.R;
-import com.gonzalo.supersolapp.SupersolApp;
-import com.gonzalo.supersolapp.controllers.PedidoUsuarioCeldaAdapter;
-import com.gonzalo.supersolapp.model.PedidoUsuario;
+import com.gonzalo.supersolapp.controllers.PedidoCeldaAdapter;
+import com.gonzalo.supersolapp.controllers.PedidoDetalleCeldaAdapter;
+import com.gonzalo.supersolapp.model.DetallePedido;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,70 +33,60 @@ import java.util.List;
 
 import static com.gonzalo.supersolapp.controllers.Constant.CONNECTION_TIMEOUT;
 import static com.gonzalo.supersolapp.controllers.Constant.READ_TIMEOUT;
-import static com.gonzalo.supersolapp.controllers.Constant._URL_PEDIDO_USUARIO;
+import static com.gonzalo.supersolapp.controllers.Constant._URL_PEDIDO_DETALLE;
 
 /**
- * Created by gonzalopro on 10/24/16.
+ * Created by gonzalopro on 12/6/16.
  */
-public class PedidoFragment extends android.support.v4.app.Fragment {
+public class DetallePedidoActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
     private ListView listView;
-    private String idUsuario;
-    private List<PedidoUsuario> pedidos;
+    private String idPedido;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_pedido,container,false);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detalle_pedido);
 
-        listView = (ListView) root.findViewById(R.id.lv_pedido);
-        idUsuario = ((SupersolApp) getContext().getApplicationContext()).getIdUsuario();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        new ObtenerPedidoUsuario(listView, idUsuario).execute();
-
-        FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.fab_shop);
-        fab.setOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationIcon(R.drawable.ic_toolbar_chevron_left);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), CarritoPedidoActivity.class));
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
+                onBackPressed();
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = parent.getItemAtPosition(position);
-                PedidoUsuario pedido  = (PedidoUsuario) o;
-                String idPedido = pedido.getIdPedido();
-                Log.i("DTPA", "id: " + idPedido);
-                startActivity(new Intent(getActivity(), DetallePedidoActivity.class).putExtra("idPedido",idPedido));
-            }
-        });
+        idPedido = getIntent().getStringExtra("idPedido");
+        listView = (ListView) findViewById(R.id.lv_detalle_pedido);
 
-        return root;
+        new ObtenerDetallePedido(listView,idPedido).execute();
+
     }
 
-    private class ObtenerPedidoUsuario extends AsyncTask<Void,Void,Void> {
-
-        private URL url;
-        private HttpURLConnection httpURLConnection;
-        private StringBuilder resultPedido;
+    private class ObtenerDetallePedido extends AsyncTask<Void,Void,Void> {
 
         private ListView listView;
-        private String idUsuario;
+        private String idPedido;
 
-        public ObtenerPedidoUsuario(ListView listView, String idUsuario) {
+        private List<DetallePedido> detallePedidos;
+        private URL url;
+        private HttpURLConnection httpURLConnection;
+        private StringBuilder resultDetallePedido;
+
+        public ObtenerDetallePedido(ListView listView, String idPedido) {
             this.listView = listView;
-            this.idUsuario = idUsuario;
+            this.idPedido = idPedido;
         }
 
         @Override
         protected Void doInBackground(Void... params) {
 
             try {
-                url = new URL(_URL_PEDIDO_USUARIO);
+                url = new URL(_URL_PEDIDO_DETALLE);
             } catch (MalformedURLException e){
                 e.printStackTrace();
             }
@@ -116,7 +100,7 @@ public class PedidoFragment extends android.support.v4.app.Fragment {
                 httpURLConnection.setDoOutput(true);
 
                 Uri.Builder builder = new Uri.Builder()
-                        .appendQueryParameter("idUsuario", idUsuario);
+                        .appendQueryParameter("idPedido", idPedido);
 
                 String request = builder.build().getEncodedQuery();
 
@@ -139,11 +123,11 @@ public class PedidoFragment extends android.support.v4.app.Fragment {
                     InputStream inputStream = httpURLConnection.getInputStream();
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-                    resultPedido = new StringBuilder();
+                    resultDetallePedido = new StringBuilder();
                     String line;
 
                     while ((line = bufferedReader.readLine()) != null) {
-                        resultPedido.append(line);
+                        resultDetallePedido.append(line);
 
                     }
 
@@ -164,17 +148,17 @@ public class PedidoFragment extends android.support.v4.app.Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            pedidos = new ArrayList<>();
+            detallePedidos = new ArrayList<>();
             try {
-                JSONObject group_info = new JSONObject(String.valueOf(resultPedido));
+                JSONObject group_info = new JSONObject(String.valueOf(resultDetallePedido));
 
-                JSONArray jsonArray = group_info.getJSONArray("pedido_info");
+                JSONArray jsonArray = group_info.getJSONArray("group_pedido");
                 for (int i = 0; i < jsonArray.length() ; i++) {
 
                     JSONObject jsonGroup = jsonArray.getJSONObject(i);
-                    pedidos.add(i, new PedidoUsuario(jsonGroup.getString("idPedido"),jsonGroup.getString("fechaPedido"),jsonGroup.getString("estado")));
+                    detallePedidos.add(i, new DetallePedido(jsonGroup.getString("foto"),jsonGroup.getString("nombre"),jsonGroup.getString("cantidad"),jsonGroup.getString("preciobase")));
 
-                    listView.setAdapter(new PedidoUsuarioCeldaAdapter(getActivity(), pedidos));
+                    listView.setAdapter(new PedidoDetalleCeldaAdapter(DetallePedidoActivity.this, detallePedidos));
 
                 }
 

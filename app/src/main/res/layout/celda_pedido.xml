@@ -12,13 +12,13 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_celda_producto_foto"
+            android:id="@+id/iv_celda_pedido_foto"
             android:contentDescription="@string/app_name"
             android:layout_width="match_parent"
             android:layout_height="96dp" />
 
         <TextView
-            android:id="@+id/tv_celda_producto_precio"
+            android:id="@+id/tv_celda_pedido_precio"
             android:hint="0.00Bs"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:id="@+id/tv_celda_producto_nombre"
+            android:id="@+id/tv_celda_pedido_nombre"
             android:hint="Title "
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -47,22 +47,12 @@
             android:layout_weight="1"
             android:textSize="15sp"
             android:textStyle="italic"
-            android:id="@+id/tv_celda_producto_detalle"
+            android:id="@+id/tv_celda_pedido_detalle"
             android:hint="Description "
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/btn_celda_producto_agregar"
-            android:layout_marginRight="8dp"
-            android:textStyle="bold"
-            android:textColor="#00C2E8"
-            android:layout_gravity="end|bottom"
-            android:textSize="14sp"
-            android:text="Agregar"
-            android:background="#00FFFFFF"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp" />
+
 
     </LinearLayout>
 
