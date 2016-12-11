@@ -196,6 +196,7 @@ public class CarritoPedidoActivity extends AppCompatActivity {
                         case 1:
                             // Iniciar nueva actividad
                             Toast.makeText(CarritoPedidoActivity.this, "Insertado Correctamente", Toast.LENGTH_SHORT).show();
+                            ((SupersolApp) getApplicationContext()).clearPedido();
                             break;
 
                     }

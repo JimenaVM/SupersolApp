@@ -42,7 +42,6 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:text="mr634"
                     android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF"
                     android:textSize="20sp"
@@ -61,7 +60,6 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:text="12345"
                     android:textColorHint="#FFFFFF"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"

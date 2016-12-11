@@ -22,6 +22,10 @@ public class SupersolApp extends Application {
         this.pedidos.add(pedido);
     }
 
+    public void clearPedido() {
+        pedidos.clear();
+    }
+
     public Pedido getPedido() {
         return pedido;
     }
